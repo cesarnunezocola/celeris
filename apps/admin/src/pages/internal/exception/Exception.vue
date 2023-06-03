@@ -47,16 +47,14 @@ onMounted(() => {
 </script>
 
 <template>
-  <NResult class="p-4" :status="statusType" :title="title" :description="description" size="large">
-    <template #footer>
-      <NSpace justify="center">
-        <NButton type="primary" @click="router.push(PageConstants.BASE_HOME)">
-          返回主页
-        </NButton>
-        <NButton @click="router.back()">
-          返回上一级
-        </NButton>
-      </NSpace>
+  <AResult class="p-4" :status="statusType" :title="title" :sub-title="description">
+    <template #extra>
+      <AButton type="primary" @click="router.push(PageConstants.BASE_HOME)">
+        返回主页
+      </AButton>
+      <AButton @click="router.back()">
+        返回上一级
+      </AButton>
     </template>
-  </NResult>
+  </AResult>
 </template>

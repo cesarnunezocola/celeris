@@ -22,10 +22,10 @@ export function CelerisAdminResolver(): ComponentResolver {
   return {
     type: "component",
     resolve: (name: string) => {
-      // Resolver for Naive UI
-      // @link https://www.naiveui.com/
-      if (name.match(/^(N[A-Z]|n-[a-z])/)) {
-        return { name, from: "@celeris/ca-components" };
+      const antName = name.replace(/^A/, "");
+      // Resolver for Ant Design Vue
+      if (name.match(/^(A[A-Z]|a-[a-z])/)) {
+        return { name: antName, as: name, from: "@celeris/ca-components" };
       }
       if (name.match(/^(CA[A-Z]|ca-[a-z])/)) {
         return { name, from: "@celeris/components" };

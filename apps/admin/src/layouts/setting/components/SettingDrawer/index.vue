@@ -8,12 +8,11 @@ const { getShouldShowSettingDrawer, setShouldShowSettingDrawer } = useHeaderSett
 </script>
 
 <template>
-  <NDrawer
-    :show="getShouldShowSettingDrawer" display-directive="show" width="25%"
-    @mask-click="setShouldShowSettingDrawer(false)"
-  >
-    <NDrawerContent title="Project Setting" :native-scrollbar="false" />
-  </NDrawer>
+  <ADrawer
+    :open="getShouldShowSettingDrawer" width="25%"
+    title="Project Setting"
+    @close="setShouldShowSettingDrawer(false)"
+  />
 </template>
 
 <style scoped>

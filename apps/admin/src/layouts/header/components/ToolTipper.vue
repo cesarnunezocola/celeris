@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { computed } from "vue";
-import type { PopoverPlacement } from "naive-ui";
 
 interface ToolTipperProps {
   // Tooltip 显示的文本信息
@@ -9,7 +8,11 @@ interface ToolTipperProps {
 
   // Tooltip 显示的位置
   // The placement of the tooltip
-  placement?: PopoverPlacement;
+  placement?: "top" | "left" | "right" | "bottom" | "topLeft" | "topRight" | "bottomLeft" | "bottomRight" | "leftTop" | "leftBottom" | "rightTop" | "rightBottom";
+
+  // Tooltip 的触发方式
+  // The trigger mode of the tooltip
+  tooltipTrigger?: "hover" | "focus" | "click" | "contextMenu";
 
   // Tooltip 的额外样式类，用于自定义样式
   // The class name to apply to the content element for custom styling
@@ -18,23 +21,24 @@ interface ToolTipperProps {
 
 const props = withDefaults(defineProps<ToolTipperProps>(), {
   tooltipText: "",
-  placement: "bottom",
+  placement: "bottomLeft",
+  tooltipTrigger: "hover",
   contentClass: "",
 });
-const { tooltipText, placement, contentClass } = toRefs(props);
+const { tooltipText, placement, tooltipTrigger, contentClass } = toRefs(props);
 const shouldShowTooltip = computed(() => Boolean(tooltipText));
 </script>
 
 <template>
   <div v-if="shouldShowTooltip">
-    <NTooltip :placement="placement" trigger="hover">
-      <template #trigger>
+    <ATooltip :placement="placement" :trigger="tooltipTrigger" :auto-adjust-overflow="true">
+      <template #title>
         <div class="flex-center h-full rounded-lg cursor-pointer dark:hover:bg-gray-900" :class="contentClass">
-          <slot />
+          {{ tooltipText }}
         </div>
       </template>
-      {{ tooltipText }}
-    </NTooltip>
+      <slot />
+    </ATooltip>
   </div>
   <div v-else class="flex-center rounded-lg cursor-pointer dark:hover:bg-gray-900" :class="contentClass">
     <slot />

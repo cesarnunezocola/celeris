@@ -9,14 +9,6 @@ export function createAutoImportPluginConfig(): PluginOption {
       "vue-router",
       "vue-i18n",
       "@vueuse/core",
-      {
-        "@celeris/ca-components": [
-          "useDialog",
-          "useMessage",
-          "useNotification",
-          "useLoadingBar",
-        ],
-      },
     ],
     dts: "autoResolver/auto-imports.d.ts",
     dirs: [

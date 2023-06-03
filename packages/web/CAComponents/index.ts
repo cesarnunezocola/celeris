@@ -1,1 +1,1 @@
-export * from "naive-ui";
+export * from "ant-design-vue";
